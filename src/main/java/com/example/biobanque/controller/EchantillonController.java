@@ -41,9 +41,15 @@ public class EchantillonController {
         return echantillonService.save(e);
     }
 
-    @PutMapping("/smaples/{id}")
-    public ResponseEntity<Echantillon> updateSample(@PathVariable(value="id") Long id){
-        Echantillon e = echantillonService.getById(id).orElseThrow(()-> new ResourceNotFound("Sample with id: "+id+" not found"));
+    @PutMapping("/samples/{id}")
+    public ResponseEntity<Echantillon> updateSample(@PathVariable(value="id") Long id, @RequestBody Echantillon ech){
+        Echantillon e = echantillonService.update(id, ech);
+//        e.setCode(ech.getCode());
+//        e.setDonneur(ech.getDonneur());
+//        e.setTypeEchantillon(ech.getTypeEchantillon());
+//        e.setResultat(ech.getResultat());
+//        e.setDateCollect(ech.getDateCollect());
+
         return ResponseEntity.ok(e);
     }
 
